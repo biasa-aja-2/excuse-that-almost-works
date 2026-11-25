@@ -53,6 +53,8 @@ def main():
     read_back = raw.decode("utf-8")
     if read_back != TEXT:
         raise ValueError("read-back differs from TEXT")
+    if len(raw) != len(TEXT.encode("utf-8")):
+        raise ValueError("written bytes differ from TEXT bytes")
     gate(read_back)
     print("wrote %d chars to %s" % (len(TEXT), path))
 
